@@ -2,31 +2,73 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 
-// this code was based on the https://howtomechatronics.com/tutorials/arduino/arduino-wireless-communication-nrf24l01-tutorial/  tutorial
-// I would recommend using the code on that website as a test as well but this code should work fine
-// There is also a wiring diagram also on the website 
 
-// make sure to get all the libraries
+int y  = 0;
+//const int pin = 34;
 
 RF24 radio(4, 5); // CE, CSN - set these pins yourself 
 
 const byte address[6] = "00001"; // make sure that this address is this same on your reciever code 
-int value = 0; // just a varaible that we will send to the reciever
+
+
+// puts multiple values in one packet using structs
+// sending information to
+struct transmitter_packet {
+  int transmitter_variable1; 
+  int transmitter_variable2;
+};
+
+// sending information back 
+struct reciever_packet {
+  float reciever_variable1;
+  float reciever_variable2;
+  float reciever_variable3;
+};
+
+
 
 void setup() {
-  radio.begin(); // initialise 
-  radio.openWritingPipe(address); 
-  radio.setPALevel(RF24_PA_MAX); // set for maximum range
-  radio.setDataRate(RF24_250KBPS);   
+  Serial.begin(115200);
+  radio.begin(); // initialise the radio hardware
+  radio.openWritingPipe(address); // this is telling the transmitter where it is sending the packets to 
+  // Enable ACK payloads so we can send telemetry
+  radio.enableAckPayload(); // allows for the data to be sent 
+  radio.enableDynamicPayloads();
+
+  radio.setPALevel(RF24_PA_HIGH); // set for maximum range
+  radio.setDataRate(RF24_250KBPS); 
   radio.stopListening();
+
+
+
 }
 
 void loop() {
-  int value = value + 1; 
-  if (value == 1023){
-    value  = 1;
+  transmitter_packet trs; // creating packet variable
+  trs.transmitter_variable1 = y;
+  trs.transmitter_variable2 = 10000 - y;
+  y ++;
+  if (y==10000){
+    y = 0;
   }
-  radio.write(&value, sizeof(value));  // Sends 2 bytes only
+  bool success = radio.write(&trs, sizeof(trs)); // sends the struct packet to the reciever 
+  // if sent --->
+  if (success) {
+    // line bellow checks if the reciever is sending anything back 
+    if (radio.isAckPayloadAvailable()) {
+      reciever_packet rcv; // creating packet
+      radio.read(&rcv, sizeof(rcv)); // reading the information sent back to the transmitter
 
-  delay(5);  // Very fast transmission (200 packets/sec)
+      Serial.print("Reciever Variable 1: "); Serial.println(rcv.reciever_variable1);
+      Serial.print("Reciever Variable 2: "); Serial.println(rcv.reciever_variable2);
+      Serial.print("Reciever Variable 3: "); Serial.println(rcv.reciever_variable3);
+    }
+  }
+
+  delay(10);  // (100 packets/sec) 
+
+
 }
+
+
+
