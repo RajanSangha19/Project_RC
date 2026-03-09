@@ -1,4 +1,4 @@
-There are two files, each named and .
+There are two files, test_reciever_code and test_transmitter_code.
 
 Upload each of the codes to two different ESP32 boards. I used a custom PCB (files linked bellow) reducing interference. This isn't needed but it will help.
 
