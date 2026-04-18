@@ -7,5 +7,5 @@ This is where I will log my progress
 | Steering and drivetrain       | Incomplete |                |
 | Build remote                | Incomplete |                |
 | Test wireless communication | Complete   | Test code - Phase 2 |
-| Complete basic fixes        | Incomplete |                |
+| Complete basic fixes        | Complete |                |
 | Disassemble the car         | Completed  |                |
