@@ -8,7 +8,13 @@ The car has a 7.2V battery and a tamiya tuned sport brushed motor that can put o
 
 Whilst 18,300 rpm may seem like a lot, when we consider the 1:8 gearing ratio the wheels only have a maximum of 2287.5 rpm
 
-The stock wheels of the car have a diamter or 67mm, so using the formula of 
+The stock wheels of the car have a diamter or 67mm, so using this formula
+
+
+( diameter * pi * wheel rpm * 60 ) / ( 1.6 * 10^5 )  = theoretical max speed in mph
+
+
+we can know that the RC car at the moment would have a maximum speed of 18mph which is not our 50 mph goal
 
 
 
