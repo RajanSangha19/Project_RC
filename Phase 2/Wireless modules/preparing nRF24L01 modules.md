@@ -9,7 +9,7 @@ It is important first that you solder a 1000uF capacitor to the VIN and GND pins
 
 Completed module:
 
-5V power on the right pins and 3.3V power on the left pins (at the bottom on the pcb), with ground being just above them
+5V power on the right pin and 3.3V power on the left pin (at the bottom on the pcb), with ground being just above them
 
 <img width="3472" height="4624" alt="PXL_20260506_165613078 MP" src="https://github.com/user-attachments/assets/51e1e7d5-5f08-4296-9d0d-d326e075d7c4" />
 
