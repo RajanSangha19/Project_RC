@@ -1,4 +1,4 @@
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 int value = 0;
 String input = "";
@@ -21,7 +21,7 @@ void loop() {
   }
   Serial.println("");
   servo.write(value);
-  millis(5);
+  delay(5);
 }
 
 // Make sure to note down the values, including a value that sets your servo to make the wheel straight
