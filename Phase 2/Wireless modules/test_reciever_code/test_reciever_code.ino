@@ -50,8 +50,8 @@ void loop() {
     // Prepare telemetry
     reciever_packet rcv;
     rcv.reciever_variable1 = x;
-    rcv.reciever_variable2 = 10000-x;
-    rcv.reciever_variable3 = x*2;
+    rcv.reciever_variable2 = 1;
+    rcv.reciever_variable3 = 2;
 
     // Attach telemetry to next ACK packet
     radio.writeAckPayload(1, &rcv, sizeof(rcv));
