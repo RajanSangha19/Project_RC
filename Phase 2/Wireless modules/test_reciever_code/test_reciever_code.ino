@@ -34,7 +34,7 @@ void setup() {
   radio.enableAckPayload();
   radio.enableDynamicPayloads();
 
-  radio.setPALevel(RF24_PA_HIGH);
+  radio.setPALevel(RF24_PA_HIGH); //Long range 
   radio.setDataRate(RF24_250KBPS);
   radio.startListening();
 
@@ -44,16 +44,20 @@ void setup() {
 
 void loop() {
   if (radio.available()) {
-    transmitter_packet trs;
-    radio.read(&trs, sizeof(trs));
 
     // Prepare telemetry
     reciever_packet rcv;
-    rcv.reciever_variable1 = x;
+
+    rcv.reciever_variable1 = x;// These are just example values
     rcv.reciever_variable2 = 1;
     rcv.reciever_variable3 = 2;
-
     // Attach telemetry to next ACK packet
+    
+
+    transmitter_packet trs;
+    radio.read(&trs, sizeof(trs));
+    Serial.print("Variable 1: "); Serial.println(trs.transmitter_variable1);
+    Serial.print("Variable 2: "); Serial.println(trs.transmitter_variable2);
     radio.writeAckPayload(1, &rcv, sizeof(rcv));
   }
   x ++;

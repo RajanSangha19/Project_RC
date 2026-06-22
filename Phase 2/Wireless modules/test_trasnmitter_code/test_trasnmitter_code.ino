@@ -45,7 +45,7 @@ void setup() {
 
 void loop() {
   transmitter_packet trs; // creating packet variable
-  trs.transmitter_variable1 = y;
+  trs.transmitter_variable1 = y;// These are just example values
   trs.transmitter_variable2 = 10000 - y;
   y ++;
   if (y==10000){
@@ -59,9 +59,12 @@ void loop() {
       reciever_packet rcv; // creating packet
       radio.read(&rcv, sizeof(rcv)); // reading the information sent back to the transmitter
 
-      Serial.print("Reciever Variable 1: "); Serial.println(rcv.reciever_variable1);
-      Serial.print("Reciever Variable 2: "); Serial.println(rcv.reciever_variable2);
-      Serial.print("Reciever Variable 3: "); Serial.println(rcv.reciever_variable3);
+      Serial.print("Reciever Variable 1: "); 
+      Serial.println(rcv.reciever_variable1);
+      Serial.print("Reciever Variable 2: "); 
+      Serial.println(rcv.reciever_variable2);
+      Serial.print("Reciever Variable 3: "); 
+      Serial.println(rcv.reciever_variable3);
     }
   }
 
