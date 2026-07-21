@@ -6,8 +6,8 @@
 
 // sending information to
 struct transmitter_packet {
-  int transmitter_variable1; 
-  int transmitter_variable2;
+  byte transmitter_variable1; 
+  byte transmitter_variable2;
 };
 
 // sending information back 
@@ -61,7 +61,7 @@ void loop() {
     radio.writeAckPayload(1, &rcv, sizeof(rcv));
   }
   x ++;
-  delay(5);
+  delay(10);
   }
 
 

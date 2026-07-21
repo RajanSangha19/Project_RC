@@ -14,8 +14,8 @@ const byte address[6] = "00001"; // make sure that this address is this same on 
 // puts multiple values in one packet using structs
 // sending information to
 struct transmitter_packet {
-  int transmitter_variable1; 
-  int transmitter_variable2;
+  byte transmitter_variable1; 
+  byte transmitter_variable2;
 };
 
 // sending information back 
@@ -45,8 +45,10 @@ void setup() {
 
 void loop() {
   transmitter_packet trs; // creating packet variable
-  trs.transmitter_variable1 = y;// These are just example values
-  trs.transmitter_variable2 = 10000 - y;
+  trs.transmitter_variable1 = map(analogRead(12),0,1023,0,255);// These are just example values
+  trs.transmitter_variable2 = map(analogRead(13),0,1023,0,255);
+  Serial.println(trs.transmitter_variable1);
+  Serial.println(trs.transmitter_variable2);
   y ++;
   if (y==10000){
     y = 0;

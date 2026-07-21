@@ -7,10 +7,11 @@ String input = "";
 // Ensure that the steering is not attached to prevent breaking anything
 // Make sure that you stervo has a serperate power supply but shares a common ground with the ESP32
 
+Servo servo;
 
 void setup() {
   Serial.begin(115200);
-  servo.attach(#####); // Attach this to your servo pin
+  servo.attach(25); // Attach this to your servo pin
 }
 
 void loop() {
